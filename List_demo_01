@@ -1,0 +1,33 @@
+# Make a list   
+
+country_list = ['United States', 'Japan', 'China', 'United Kingdom', 'Idian']
+#list(串列) = [items(項目)]
+
+print(country_list[1])
+print(country_list[3])
+print(country_list[1] + ' is different from '+ country_list[3])
+# list[index(索引足標)]
+# index must be integer (索引足標必為整數)
+
+country_number_list = [['United States', 'Japan', 'China', 'United Kingdom', 'Idian'],[1,81,86,44,91]]
+print(country_number_list[1][2])
+# Multi-index(多重索引足標)
+
+print(country_list[0:2])
+# Slice(切片，不包含後索引足標)
+
+print(country_list[:2])
+#省略起始足標相當於從0開始
+
+del country_list[3]
+print(country_list)
+# Del(可刪除串列中索引足標的值)
+
+print('United States' in country_list)
+print('Deutschland' in country_list)
+print('Turkey' not in country_list)
+# 確認是否再串列中
+
+country_detail_list = ['Japan', '37.8', '38893']
+name, area, GDP = country_detail_list
+# Multi-definition(多重指定值要考慮變數數量必須與串列長度完全相等)
