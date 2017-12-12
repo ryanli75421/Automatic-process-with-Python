@@ -1,0 +1,10 @@
+country_list = ['United States', 'Japan', 'China', 'United Kingdom', 'Idian']
+print(country_list.index('China'))
+#確認特定串列值之索引足標
+country_list.append('Canada')
+#在串列最後插入新值
+country_list.insert(2,'Mexico')
+#在串列特定位置插入新值
+country_list.remove('Mexico')
+#刪除串列中的某一項目
+country_list.sort()
