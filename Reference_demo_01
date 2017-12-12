@@ -1,0 +1,22 @@
+# Make a Reference
+
+test_1 = 50
+test_2 = test_1
+test_1 = 100
+print(test_1, test_2)
+#兩者為不同變數，因此各自存放不同的值。因為，字串和整數值來說，變數裝的就是本身。
+
+
+test_3 = [10, 20, 30, 40, 50]
+test_4 = test_3
+test_4[3] = 'here'
+print(test_3, test_4)
+#當在串列定給變數時，實際上是將串列的參照(reference)指定給特定變數，非串列本身。
+#當在串列中修改任何項目時，修改了串列本身值，造成所有對應之參照皆須修改。
+#所以變數本身是裝串列值的參照，不是串列值本身。
+
+import copy
+test_5 = [1, 2, 3, 4]
+test_6 = copy.copy(test_5)
+test_6[1] = 7
+print(test_5, test_6)
