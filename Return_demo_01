@@ -14,5 +14,6 @@ def guessnation(number):
         return 'United Kingdom'
     elif number == 5:
         return 'Idian'
+#return特定值回變數
 
 print(guessnation(random.randint(1,5)))
