@@ -1,0 +1,18 @@
+# Make a return
+
+import random
+
+def guessnation(number):
+    
+    if number == 1:
+        return 'United States'
+    elif number == 2:
+        return 'Japan'
+    elif number == 3:
+        return 'China'
+    elif number == 4:
+        return 'United Kingdom'
+    elif number == 5:
+        return 'Idian'
+
+print(guessnation(random.randint(1,5)))
