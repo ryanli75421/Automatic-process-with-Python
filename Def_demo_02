@@ -1,0 +1,10 @@
+# Make a function
+
+def nation(name):
+    print('This is '+ name)
+#在print()括號內的值稱之為引數(arguments)
+#亦可藉由建立函數def(function)來定義自己希望接收的引數
+
+nation('United States')
+#引數用過一次就無效
+nation('China')
