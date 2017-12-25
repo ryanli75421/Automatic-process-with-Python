@@ -1,0 +1,43 @@
+# Make a dictionary (key-value pair)
+
+#串列有順序性
+country_list_1 = ['United States', 'Japan', 'China', 'United Kingdom', 'Idian']
+country_list_2 = ['China', 'United States', 'United Kingdom', 'Idian', 'Japan']
+print(country_list_1 == country_list_2)
+
+#字典沒有順序性
+country_dict_1 = {'United States': '1', 'Japan': '81', 'China': '86', 'United Kingdom': '44', 'Idian': '91'}
+country_dict_2 = {'China': '86', 'United States': '1', 'United Kingdom': '44', 'Idian': '91', 'Japan': '81'}
+print(country_dict_1 == country_dict_2)
+
+
+#add key
+
+country_dict_1['Korea'] = 82
+print(country_dict_1)
+print(country_dict_1['United States'])
+
+# Key()
+#抓取字典內所有的key
+for key in country_dict_1.keys():
+    print(key)
+
+# Value()
+#抓取字典內所有的value
+for value in country_dict_1.values():
+    print(value)
+
+# Items()
+#抓取字典內所有的key-value pair
+for item in country_dict_1.items():
+    print(item)
+    
+# Get()
+#可以搜尋字典內的key，若沒有相對應的key則輸出第二個引數
+print('The national code of United States is ' + str(country_dict_1.get('United States', 0)))
+print('The national code of Spain is ' + str(country_dict_1.get('Spain', 'unknown')))
+
+# Setdefault()
+#可以搜尋字典內的key，若沒有相對應的key則加入此組key-value pair
+country_dict_1.setdefault('Spain', '34')
+print(country_dict_1)
