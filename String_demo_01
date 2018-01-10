@@ -1,0 +1,49 @@
+"""
+這裡介紹三重雙引號
+作為分行註解的優點
+"""
+
+#三重單引號具有的優點是不論空格、換行或引號都皆視為字串一部分
+print('''The national code of United States is 0
+and
+The national code of Spain is unknown.''')
+
+#轉義字元(\n為換行)
+print("The\nnational\ncode\nof\nUnited\nStates\nis\n0.")
+
+# in not in
+print('code' in 'The national code of United States is 0')
+print('CODE' in 'The national code of United States is 0')
+print('CODE' not in 'The national code of United States is 0')
+
+# upper() lower()
+nation = 'Spain'
+print(nation.upper()) #全部字母變成大寫
+print(nation.lower()) #全部字母變成小寫
+
+# isupper() islower()
+nation = 'Spain'
+print(nation.isupper()) #全部字母大寫才回傳True
+print(nation.islower()) #全部字母小寫才回傳True
+print(nation.upper().islower())
+print(nation.lower().islower())
+
+# startswith() endswith() 比==更好用
+print('Spain'.startswith('S')) #第一個字母相同才回傳True
+print('Spain'.startswith('N')) #第一個字母相同才回傳True
+print('Spain'.endswith('n'))   #最後字母相同才回傳True
+
+# join() split()
+print(' '.join(['The', 'national', 'code', 'of', 'United', 'States', 'is', '0'])) #以空格合併
+print('The national code of United States is 0'.split('e')) #以e分隔
+
+#rjust() ljust() center()
+def printcode(nation, left_width, right_width):
+    print('National Code'.center(left_width+right_width, '-'))  #將National Code置中其餘部分用-補起來
+    for i, j in nation.items():
+        print(i.ljust(left_width, '.') + str(j).rjust(right_width)) 
+        #將i引數靠左對齊其餘用.補起來; 將j引數靠右對齊其餘用空格補起來
+nationitems = {'China': 86, 'United States': 1, 'United Kingdom': 44}
+print(printcode(nationitems, 20, 4))
+print(printcode(nationitems, 30, 4))
+
