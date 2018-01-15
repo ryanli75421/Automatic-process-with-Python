@@ -1,0 +1,25 @@
+"""
+Step1. 先匯入re正規表示式模組
+Step2. 使用re.compile()函式建立Regex物件，請務必用原始字串r
+Step3. 對Regex物件的search()方法傳入想要搜尋的字串，會返回一個Match物件
+Step4. 呼叫Match物件的group()方法，返回實際比對符合的字串
+"""
+
+import re  #匯入正規化模組
+
+phoneNumRegex = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+mo = phoneNumRegex.search('My number is 415-555-4242.')
+print('Phone number found: ' + mo.group())
+
+#利用括號來分組
+phoneNumRegex_1 = re.compile(r'(\d\d\d)-(\d\d\d-\d\d\d\d)') #正規表示式第一個括號是第一組，以此類推
+mo = phoneNumRegex_1.search('My number is 415-555-4242.')
+print(mo.group(0))
+print(mo.group(1))
+print(mo.group(2))
+print(mo.group())
+print(mo.groups()) #取得所有分組
+
+areaCode, mainNumber = mo.groups() #將各組指定給特定變數
+print(areaCode)
+print(mainNumber)
