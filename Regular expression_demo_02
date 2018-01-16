@@ -1,0 +1,40 @@
+import re  #匯入正規化模組
+
+#利用問號來執行選擇性比對
+phoneNumRegex_2 = re.compile(r'(\d\d\d-)?\d\d\d-\d\d\d\d') #？前面括號內的資訊為可有可無之比對資料
+mo_1 = phoneNumRegex_2.search('My number is 415-555-4242.')
+mo_2 = phoneNumRegex_2.search('My number is 555-4242.')
+print(mo_1.group())
+print(mo_2.group())
+
+#使用星號比對可以符合零次或多次
+phoneNumRegex_3 = re.compile(r'(\d\d\d-)*\d\d\d-\d\d\d\d') #*前面括號內的資訊為可有可無之比對資料
+
+#使用加號比對可以符合一次或多次
+phoneNumRegex_4 = re.compile(r'(\d\d\d-)+\d\d\d-\d\d\d\d') #+前面括號內的資訊為可有可無之比對資料
+
+#使用大括號比對可以指定比對次數
+phoneNumRegex_5 = re.compile(r'(Yes){5}') # =(Yes)(Yes)(Yes)(Yes)(Yes)
+phoneNumRegex_6 = re.compile(r'(Yes){3,5}') # =((Yes)(Yes)(Yes))|((Yes)(Yes)(Yes)(Yes))|((Yes)(Yes)(Yes)(Yes)(Yes))
+phoneNumRegex_7 = re.compile(r'(Yes){,3}') # =(Yes)|((Yes)(Yes))|((Yes)(Yes)(Yes))
+phoneNumRegex_8 = re.compile(r'(Yes){1,}') # =(Yes)|((Yes)(Yes))|((Yes)(Yes)(Yes))|...
+
+#貪婪與非貪婪比對(greedy and non-greedy)
+phoneNumRegex_9 = re.compile(r'(Yes){3,5}') # 貪婪比對，找出最多的符合條件
+mo_9 = phoneNumRegex_9.search('YesYesYesYesYes')
+print(mo_9.group())
+
+phoneNumRegex_10 = re.compile(r'(Yes){3,5}?') # 非貪婪比對，找出最少的符合條件
+mo_10 = phoneNumRegex_10.search('YesYesYesYesYes')
+print(mo_10.group())
+
+# findall()方法
+phoneNumRegex_11 = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+mo_11 = phoneNumRegex_11.search('Cell: 415-555-4242 Work:212-555-0000')
+#使用search只會搜索出符合條件的所有資訊的第一組，並返回一個Match
+print(mo_11.group())
+
+phoneNumRegex_12 = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
+mo_12 = phoneNumRegex_12.findall('Cell: 415-555-4242 Work:212-555-0000')
+#使用findall會搜索出符合條件的所有資訊的每一組，並返回一個字串串列
+print(mo_12)
