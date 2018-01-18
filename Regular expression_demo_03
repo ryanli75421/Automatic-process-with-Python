@@ -1,0 +1,39 @@
+#字元分類
+'''
+\d:0~9的任何數字
+\D:除了0~9的數字以外的任何字元
+\w:任何字母、數字或底線字元(可想成是比對單字字元)
+\W:除了字母、數字或底線以外的任何字元
+\s:空格、定位符號或換行符號(可想成是比對空白字元)
+\S:除了空格、定位符號和換行符號以外的任何字元
+'''
+phoneNumRegex_13 = re.compile(r'\d+\s\w+')
+#\d+:對比文字中有一個或多個數字
+#\s:對比文字中一格空白字元
+#\w+:對比文字中一個或多個字母、數字、底線字元
+
+#自訂字元分類
+phoneNumRegex_14 = re.compile(r'[0-5.]')
+#為搜索自訂字元0-5和句點
+
+nameRegex_14 = re.compile(r'[aeiou]')#搜尋aeiou母音小寫字母
+mo_14 = nameRegex_14.findall('United States Japan China United Kingdom Idian')
+print(mo_14)
+
+nameRegex_15 = re.compile(r'[^aeiou]')#搜尋aeiou母音小寫字母以外的
+mo_15 = nameRegex_15.findall('United States Japan China United Kingdom Idian')
+print(mo_15)
+
+nameRegex_16 = re.compile(r'^United')#搜尋是否為United開頭的文字
+mo_16 = nameRegex_16.search('United States Japan China United Kingdom Idian')
+print(mo_16)
+
+nameRegex_17 = re.compile(r'Idian$')#搜尋是否為Idian結尾的文字
+mo_17 = nameRegex_17.search('United States Japan China United Kingdom Idian')
+print(mo_17)
+
+nameRegex_18 = re.compile(r'First Name: (.*) Last Name: (.*)')
+#搜尋除了換行符號以外的所有單個字元，並且出現零次或多次以上(貪婪模式)
+mo_18 = nameRegex_18.search('First Name: Jack Last Name: Berg')
+print(mo_18.group(1))
+print(mo_18.group(2))
