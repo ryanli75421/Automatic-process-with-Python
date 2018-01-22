@@ -1,0 +1,15 @@
+import re
+
+#比對時不區分大小寫
+nameRegex_19 = re.compile(r'idian', re.I)
+mo_19 = nameRegex_19.search('United States Japan China United Kingdom Idian')
+print(mo_19.group())
+
+#sub()用來取代特定字串
+nameRegex_20 = re.compile(r'of \w+')#找到of 之後的字串做修正
+mo_20 = nameRegex_20.sub('of Idian', 'The national code of Japan is not 0.')
+#第一個引數是取代後的字串，第二個引數是需要搜尋的文字
+print(mo_20)
+
+#以 | 組合使用就可以突破re.compile()只能接受一個值當作第二引數的問題
+nameRegex_21 = re.compile(r'idian', re.IGNORECASE | re.DOTALL | re.VERBOSE)
