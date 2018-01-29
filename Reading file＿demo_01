@@ -1,0 +1,74 @@
+#儲存檔案有兩個很重要的資訊：檔名(name)跟路徑(path)
+
+import os
+
+print('Current path: ' + os.getcwd()) #顯示目前程式所在之絕對路徑
+print(os.path.join('usr', 'bin', 'spam')) #建立檔案路徑
+
+"""
+絕對路徑：從根目錄開始
+相對路徑：相對於程式目前的工作目錄
+./  :目前資料夾
+../ :上層資料夾
+
+"""
+#返回工作程式所在資料夾之絕對路徑的字串
+print('Current absoute path: ' + os.path.abspath('.'))
+
+
+path = '/Users/Desktop/python/Automate process with Python'
+print('basename: ' + os.path.basename(path))  #秀出基本名稱
+print('directname: ' + os.path.dirname(path))   #秀出目錄名稱
+print( os.path.split(path))   #秀出目錄名稱與基本名稱
+
+print(os.path.getsize('/Users/Desktop/python/Automate process with Python/open_test_01.py'))
+#顯示檔案大小
+print(os.listdir(path))
+#顯示在此路徑下所有檔案名稱
+
+print(os.path.exists(path))
+#確認指定檔案或資料夾是否存在
+
+print(os.path.isdir('/Users/Desktop/python'))
+#確認指定資料夾是否存在
+
+print(os.path.isfile('/Users/Desktop/python/Automate process with Python/open_test_01.py'))
+#確認指定檔案是否存在
+
+"""
+在python中讀寫檔案
+Step 1. open()
+Step 2. read() or write()
+Step 3. close()
+
+"""
+
+my_letters = open('/Users/Desktop/python/Automate process with Python/my_letters.txt', 'r')
+#打開指定路徑之檔案
+context_1 = my_letters.read()#讀取指定路徑之檔案並返回單一字串
+print(context_1)
+
+context_2 = my_letters.readlines()#讀取指定路徑之檔案並返回所有字串
+print(context_2)
+
+my_letters_writen = open('/Users/Desktop/python/Automate process with Python/my_letters_writen.txt', 'a')
+#已新增文字模式打開指定檔案
+my_letters_writen.write('the text has been changed!!')#寫入字串
+my_letters_writen.close()#關閉指定檔案
+
+my_letters_writen = open('/Users/Desktop/python/Automate process with Python/my_letters_writen.txt')
+context_3 = my_letters_writen.read()#讀取修改後檔案
+print(context_3)
+
+#使用shelve模組來將python變數儲存到二進位shelf的檔案內
+import shelve
+shelf_file = shelve.open('database') #建立一db檔案並命名
+nations = ['Japan', 'China', 'Idian']
+shelf_file['nation'] = nations #類似字典的key-value關係
+shelf_file.close()
+
+shelf_file = shelve.open('database')
+print(shelf_file['nation'])
+shelf_file.close()
+
+
