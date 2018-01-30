@@ -1,0 +1,37 @@
+import shutil
+
+#檔案複製與改名(返回複製後之新位子的絕對路徑)
+shutil.copy('/Users/Desktop/python/Automate process with Python/my_letters_writen.txt',\
+            '/Users/Desktop/python/Automate process with Python/my_letters_writen_test.txt')
+#用換行符號\來整理視野
+#第一個引數為目前檔案所在地方與檔名(原檔案還留著)
+#第二個引數為複製到的目的地與檔名(檔名可改)
+
+"""
+shutil.copy()為複製特定檔案
+shutil.copytree()為複製整個資料夾與內容其子檔案
+"""
+
+#檔案移動與改名(返回搬移後之新位子的絕對路徑)
+shutil.move('/Users/Desktop/python/Automate process with Python/my_letters_writen_test.txt',\
+            '/Users/Desktop/python/Automate process with Python/test_1/my_letters_writen_test_1.txt')
+
+#用換行符號\來整理視野
+#第一個引數為目前檔案所在地方與檔名(原檔案不會留著)
+#第二個引數為移動到的目的地與檔名(檔名可改)
+
+import os
+
+"""
+os.unlink(path)     永久刪除path路徑下所指定的檔案
+os.rmdir(path)      永久刪除path路徑下所指定的資料夾但一定要是空資料夾
+shutil.rmtree(path) 永久刪除path路徑下所指定的資料夾，包含該資料夾內所有檔案
+
+"""
+
+import send2trash  #將檔案送到資源回收桶
+
+test_film = open('trash_1.txt', 'a')
+test_film.write('This is a trash file!!')
+test_film.close()
+send2trash.send2trash('trash_1.txt')
