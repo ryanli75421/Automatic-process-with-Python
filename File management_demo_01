@@ -35,3 +35,15 @@ test_film = open('trash_1.txt', 'a')
 test_film.write('This is a trash file!!')
 test_film.close()
 send2trash.send2trash('trash_1.txt')
+
+
+#使用 os.walk() 檢視檔案夾與其子檔案夾，檔案
+
+for folder_name, subfolders, file_names in os.walk('/Users/Desktop/python/Automate process with Python'):
+    #用os.walk搜索特定路徑並回傳資料夾名稱、所屬子檔案夾與其內檔案夾名稱
+    print('The current folder is called: ' + folder_name)
+    
+    for subfolder in subfolders:
+        print('Subfolder of ' + folder_name + ':' + subfolder)
+    for file_name in file_names:
+        print('File of ' + folder_name + ':' + file_name)
