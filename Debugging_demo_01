@@ -1,0 +1,62 @@
+
+# 針對使用者所引起的輸入錯誤偵錯
+#利用raise Expception()模組來回傳錯誤訊息
+
+def symboltest(symbol_type, symbol_width, symbol_height):
+    if len(symbol_type) != 1:
+        raise Exception('Symbol must be a single character string.') #沒有買足條件則回傳錯誤訊息
+    if symbol_width <= 4:
+        raise Exception('Width must be greater than 4.')
+    if symbol_height <= 4:
+        raise Exception('height must be greater than 4.')
+    print(symbol_type * symbol_width)
+    
+    for i in range(symbol_height - 2):
+        print(symbol_type + (' ' * (symbol_width - 2)) + symbol_type)
+    print(symbol_type * symbol_width)
+    
+for sym, w, h in (('#', 6, 6), ('$$', 8, 8), ('@', 3, 8)):
+    try: #滿足條件就執行
+        symboltest(sym, w, h)
+    except Exception as error:  #不滿足上述條件就回傳
+        print('An unusual situation happened: ' + str(error))
+        
+        
+# 針對程式設計者所引起的編碼錯誤偵錯
+#利用 assert(為True的條件, 若為False要出現的字串) 模組來回傳錯誤訊息
+street_1 = {'north_south': 'green', 'east_west': 'red'}
+
+
+def light_variation(ampel):
+    for color in ampel.keys():
+        if ampel[color] == 'green':
+            ampel[color] = 'yellow'
+        elif ampel[color] == 'yellow':
+            ampel[color] == 'red'
+        elif ampel[color] == 'red':
+            ampel[color] == 'green'
+    assert 'red' in ampel.values(), 'Neither ampel is red!!' + str(ampel)
+
+
+light_variation(street_1)
+
+#日誌偵錯(Logging)
+
+#====必填部分====
+import logging
+logging.basicConfig(level=logging.DEBUG, format=' % (asctime)s - % (levelname)s - % (message)s')
+#====必填部分====
+
+logging.debug('Start of program')
+
+def addition(n):
+    logging.debug('Start of addition(% s)' % (n))
+    total = 1
+    for i in range(1, n+1):
+        total += 1
+        logging.debug( 'i = ' + str(i) +', total addition = ' + str(total))
+    logging.debug('End of addition(% s)' % (n))
+    return total
+
+print(addition(10))
+logging.debug('End of program')
