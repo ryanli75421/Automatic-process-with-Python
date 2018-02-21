@@ -1,0 +1,27 @@
+"""
+===網路擷取(Web scraping)===
+
+webbrowser:用來開啟指定之網頁
+Requests:下載網路上的檔案
+Beautiful Soup:分析HTML網頁
+Selenium:控制Web瀏覽器並模擬滑鼠游標指令
+
+"""
+
+import webbrowser
+webbrowser.open('https://www.google.com/') #打開指定網頁
+
+import requests
+html_search = requests.get('https://en.wikipedia.org/wiki/Text_file') #下載某個網頁
+print(type(html_search)) #確認是否回傳Response物件
+print(html_search.status_code == requests.codes.ok) #藉由Response物件中的status_code屬性確認網頁是否找到
+print(html_search.raise_for_status()) 
+#藉由Response物件中的raise_for_status屬性確認網頁是否找到，找到不回傳任何值，有誤則丟出例外。
+
+print(len(html_search.text)) #確認下載之網頁所有字元
+print(html_search.text[:100]) #打印出前100字元
+
+restoration_file = open('html_search.txt', 'wb') #以寫入二進位模式(wb)開啟檔案
+for context in html_search.iter_content(100000): #藉由Response物件中的iter_content方法進行迴圈
+    restoration_file.write(context) #將下載網頁內容寫入
+restoration_file.close()
