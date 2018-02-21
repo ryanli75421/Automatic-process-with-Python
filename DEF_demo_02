@@ -1,0 +1,14 @@
+
+i = 20
+def f():
+  print(i)
+f()
+i = 40
+f()
+
+def addition_f():
+  print(x+y)
+
+a1 = 10
+a2 = 20
+addition_f(a1, a2)
