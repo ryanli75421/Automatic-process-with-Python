@@ -1,0 +1,15 @@
+def tryreturn_1(x, y): #多變數函數
+  return x*y
+
+b1 = 20
+b2 = 40
+b3 = tryreturn_1(b1, b2)
+print(b3)
+
+def tryreturn_2(a, x=5, y=6): #有初始值定義
+  return a+x+y
+
+b4 = tryreturn_2(4, b1, b2)
+print(b4)
+b5 = tryreturn_2(6)
+print(b5)
