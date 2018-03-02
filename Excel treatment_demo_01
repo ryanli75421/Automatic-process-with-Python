@@ -1,0 +1,18 @@
+import openpyxl
+
+excel_file = openpyxl.load_workbook('sales_2013.xlsx') #匯入檔案名稱並回傳workbook資料型別
+print(type(excel_file))
+
+print(excel_file.get_sheet_names()) #取得所有sheet的名稱
+sheet = excel_file.get_sheet_by_name('march_2013')
+print(sheet) #取得指定sheet的名稱
+print(sheet['A1'].value)      #A1的值
+print(sheet['A1'].row)        #A1的列
+print(sheet['A1'].column)     #A1的行
+print(sheet['A1'].coordinate) #A1的行列
+
+print(sheet.cell(row=1, column=2))        #B1
+print(sheet.cell(row=1, column=2).value)  #B1的值
+
+print(sheet.max_row)     #march_2013總計列
+print(sheet.max_column)  #march_2013總計行
