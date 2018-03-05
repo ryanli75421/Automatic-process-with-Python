@@ -1,0 +1,15 @@
+
+#欄位字母和數字之間轉換
+import openpyxl
+from openpyxl.utils import get_column_letter, column_index_from_string
+print(get_column_letter(2))
+
+excel_file_2 = openpyxl.load_workbook('sales_2013.xlsx') #匯入檔案名稱並回傳workbook資料型別
+sheet_1 = excel_file_2.get_sheet_by_name('march_2013')
+print(get_column_letter(sheet_1.max_column))  #傳回最大使用欄位的數字對應之字母
+
+print(tuple(sheet['A1':'C3']))  #回傳儲存格編號
+
+for info_row in sheet['A1':'C3']: #以雙迴圈取出特定儲存格資料
+    for info_col in info_row:
+        print(info_col.coordinate, info_col.value) #資料位置、資料值
