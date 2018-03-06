@@ -1,0 +1,21 @@
+#修改sheet名稱    
+import openpyxl
+name_change = openpyxl.Workbook() #開Excel新檔
+print(name_change.get_sheet_names()) #顯示新檔sheet的名稱
+
+sheet = name_change.active #開啟正在使用中的sheet
+sheet.title = 'changed!!'  #改變sheet的名稱，但不儲存。
+print(name_change.get_sheet_names())
+name_change.save('name_change_text.xlsx') #儲存並更改名稱
+
+sheet_add = openpyxl.Workbook()
+sheet_add.create_sheet()  #增加sheet
+print(sheet_add.get_sheet_names())
+sheet_add.create_sheet(index = 0, title = 'First Sheet')  #增加第一個位置的sheet
+print(sheet_add.get_sheet_names())
+
+sheet_add.remove_sheet(sheet_add.get_sheet_by_name('Sheet'))  #刪除名稱為Sheet的分頁
+print(sheet_add.get_sheet_names())
+sheet1 = sheet_add.get_sheet_by_name('Sheet1') #取得特定sheet的名字
+sheet1['A2'] = 'Good morning!!'  #在特定sheet內給指定的儲存格某資訊
+sheet_add.save('sheet_add_text.xlsx') #儲存並更改名稱
