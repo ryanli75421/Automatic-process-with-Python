@@ -1,0 +1,68 @@
+#設定儲存格的字型
+from openpyxl.styles import Font
+form_file = openpyxl.Workbook() #開新excel檔
+form_sheet = form_file.get_sheet_by_name('Sheet')
+Font_italic24 = Font(size = 24, italic = True) #返回一個大小24，字體italic物件
+form_sheet['A1'].font = Font_italic24 #輸入字型格式
+form_sheet['A1'] = 'Good morning!!'  #輸入資料
+form_file.save('Font_change.xlsx')
+
+import openpyxl
+from openpyxl.styles import Font
+form_file_another = openpyxl.Workbook()
+form_sheet_another = form_file_another.get_sheet_by_name('Sheet')
+
+font_objective_1 = Font(name = 'Times New Roman', bold = True)
+#返回一個字體Times New Roman物件、字體為粗體。
+form_sheet_another['A1'].font = font_objective_1 
+form_sheet_another['A1'] = 'Bold Times New Roman'
+
+font_objective_2 = Font(size = 24, italic = True)
+form_sheet_another['B3'].font = font_objective_2
+form_sheet_another['B3'] = '24 pt Italic'
+
+form_file_another.save('Font_change_another.xlsx')
+
+#Excel formula
+
+import openpyxl
+formula_file = openpyxl.Workbook() #開新excel檔
+formula_sheet = formula_file.active
+formula_sheet['A1'] = 200
+formula_sheet['A2'] = 300
+formula_sheet['A3'] = '=SUM(A1:A2)' #輸入公式
+formula_file.save('formula.xlsx')
+
+
+#設定列高和欄寬
+
+import openpyxl
+adjust_file = openpyxl.Workbook()
+adjust_sheet = adjust_file.active
+adjust_sheet['A1'] = 'A1'
+adjust_sheet['B2'] = 'B2'
+adjust_sheet.row_dimensions[1].height = 70  #用列數字1,2,...來存取物件，可以設定高度
+adjust_sheet.column_dimensions['B'].width = 20  #用欄位字母A,B,...來存取物件，可以設定寬度
+adjust_file.save('adjust_dimensions.xlsx')
+
+
+#合併和取消合併儲存格
+import openpyxl
+merge_file = openpyxl.Workbook()
+merge_sheet = merge_file.active
+merge_sheet.merge_cells('A1:D3')   #將A1到D3合併成一個儲存格
+merge_sheet['A1'] = '12個儲存格合併'
+merge_sheet.merge_cells('C5:D5')   #將C5到D5合併成一個儲存格
+merge_sheet['C5'] = '2個儲存格合併'
+merge_file.save('merge_cell.xlsx')
+
+merge_sheet.unmerge_cells('A1:D3')   #取消將A1到D3合併成一個儲存格
+merge_sheet.unmerge_cells('C5:D5')   #取消將C5到D5合併成一個儲存格
+merge_file.save('unmerge_cell.xlsx')
+
+#凍結特定儲存格
+import openpyxl
+freeze_file = openpyxl.load_workbook('sales_2013.xlsx') #匯入檔案名稱並回傳workbook資料型別
+freeze_sheet = freeze_file.active
+freeze_sheet.freeze_panes = 'A2'  #凍結A2以上的欄位，也就是A1
+freeze_file.save('sales_2013_freeze.xlsx')
