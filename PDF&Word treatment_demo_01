@@ -1,0 +1,52 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Mar 13 19:33:07 2018
+
+@author: jen-chiehli
+"""
+
+#PDF擷取文字
+"""
+直接在終端機輸入pip install PyPDF2
+"""
+import PyPDF2
+pdf_file = open('b909514b.pdf', 'rb')  #以二進位rb模式開啟檔案
+pdf_context = PyPDF2.PdfFileReader(pdf_file)   #把PdfFileReader物件放入
+print('PDF pages: '+ str(pdf_context.numPages))  #展現出pdf總頁數
+pdf_page_1 = pdf_context.getPage(0) #讀取第一頁
+print(pdf_page_1.extractText())   #列印出第一頁
+
+
+#建立PDF檔
+"""
+開啟已有PDF檔案，取得PdfFileReader物件
+建立新的PdfFileWriter物件
+將頁面PdfFileReader物件複製到PdfFileWriter物件中
+使用PdfFileWriter物件寫入輸出PDF檔
+"""
+
+#複製頁面
+import PyPDF2
+pdf_file_01 = open('b909514b.pdf', 'rb')
+pdf_file_02 = open('citeulike-9572885.pdf', 'rb')
+pdf_file_reader_01 = PyPDF2.PdfFileReader(pdf_file_01) 
+pdf_file_reader_02 = PyPDF2.PdfFileReader(pdf_file_02) 
+pdf_file_writer = PyPDF2.PdfFileWriter()  #建立一個新的PdfFileWriter物件代表空PDF文件
+
+for page_number in range(pdf_file_reader_01.numPages):
+    page_context = pdf_file_reader_01.getPage(page_number) #複製所有PDF內容
+    pdf_file_writer.addPage(page_context) #新增到pdf_file_writer
+    
+for page_number in range(pdf_file_reader_02.numPages):
+    page_context = pdf_file_reader_02.getPage(page_number) #複製所有PDF內容
+    pdf_file_writer.addPage(page_context) #新增到pdf_file_writer    
+
+pdf_file_renew = open('combination file.pdf', 'wb') #以二進位wb模式合併的PDF取名
+pdf_file_writer.write(pdf_file_renew)  #
+pdf_file_renew.close()
+pdf_file_01.close()
+pdf_file_02.close()
+
+
+
