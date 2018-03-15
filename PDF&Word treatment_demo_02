@@ -1,0 +1,50 @@
+#旋轉頁面
+import PyPDF2
+rotation_file = open('citeulike-9572885.pdf', 'rb')#二進位讀檔
+rotation_file_reader = PyPDF2.PdfFileReader(rotation_file) #建立PdfFileReader讀取物件
+rotation_file_page = rotation_file_reader.getPage(0) #取得第一頁資訊
+rotation_file_page.rotateClockwise(90) #旋轉90度
+
+rotation_file_writer = PyPDF2.PdfFileWriter() #建立PdfFileWriter寫入物件
+rotation_file_writer.addPage(rotation_file_page) #增加旋轉頁面
+rotation_result_file = open('rotation.pdf', 'wb') #二進位寫檔
+rotation_file_writer.write(rotation_result_file) #寫入指定檔案內
+rotation_result_file.close()
+rotation_file.close()
+
+
+#頁面重疊
+import PyPDF2
+overlap_file = open('b909514b.pdf', 'rb')#二進位讀檔
+overlap_file_reader = PyPDF2.PdfFileReader(overlap_file) #建立PdfFileReader讀取物件
+overlap_file_page = overlap_file_reader.getPage(0) #取得第一頁資訊
+overlap_watermark_file = PyPDF2.PdfFileReader(open('citeulike-9572885.pdf', 'rb'))#二進位讀檔
+overlap_file_page.mergePage(overlap_watermark_file.getPage(0)) #把浮水印放入
+overlap_file_writer = PyPDF2.PdfFileWriter() #建立PdfFileWriter寫入物件
+overlap_file_writer.addPage(overlap_file_page) #增加重疊頁面
+
+for page_number in range(1, overlap_file_reader.numPages): 
+    #將原本在b909514b.pdf剩下的頁面用for迴圈全部加入到overlap_file_writer內
+    page_file = overlap_file_reader.getPage(page_number)
+    overlap_file_writer.addPage(page_file)
+    
+overlap_file_result = open('watermarkedfile.pdf', 'wb')
+overlap_file_writer.write(overlap_file_result)
+overlap_file.close()
+overlap_file_result.close()
+
+#對PDF加上密碼
+import PyPDF2
+code_protection_file = open('watermarkedfile.pdf', 'rb')#二進位讀檔
+code_protection_file_reader = PyPDF2.PdfFileReader(code_protection_file) #建立PdfFileReader讀取物件
+code_protection_file_writer = PyPDF2.PdfFileWriter() #建立PdfFileWriter寫入物件
+
+for page_number in range(code_protection_file_reader.numPages):
+    code_protection_file_writer.addPage(code_protection_file_reader.getPage(page_number))
+    
+code_protection_file_writer.encrypt('1234') #呼叫encrypt方法傳入密碼字串1234
+code_protection_file_result = open('codeprotect.pdf', 'wb')
+code_protection_file_writer.write(code_protection_file_result)
+code_protection_file_result.close()
+
+
