@@ -1,0 +1,31 @@
+
+"""
+先pip install python-docx安裝相關套件
+"""
+
+#讀取word文件
+import docx
+doc_file = docx.Document('bookcomment.docx')
+len(doc_file.paragraphs) #呼叫paragraph物件數目
+
+doc.paragraphs[0].text #第一段paragraph內容
+len(doc.paragraphs[1].runs)  #看有幾個樣式不同(run)的數目
+
+doc.paragraphs[1].runs[0]  #看第二段paragraph中第一個run是什麼內容
+
+#取得文字內容
+
+import docx
+
+def get_context(filename):
+  doc_file = docx.Document(filename)
+  fill_context = []
+  
+  for context in doc.paragraphs:  #瀏覽所有內文
+    fill_context.append(context.text)
+  return '\n'.join(fill_context)
+  
+import readDocx  #讀文字檔內容
+print(readDocx.getText('bookcomment.docx'))
+
+ 
