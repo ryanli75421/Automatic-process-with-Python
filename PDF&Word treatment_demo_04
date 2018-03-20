@@ -1,0 +1,26 @@
+#寫入word文件
+
+import docx
+doc_file＿write = docx.Document() #返回一個新的空白的word
+doc_file＿write.add_paragraph('Good morning!!') #加入文字
+context_1 = doc_file＿write.add_paragraph('Good afternoon!!') #加入文字在第二段
+context_2 = doc_file＿write.add_paragraph('Good evening!!')  #加入文字在第三段
+context_1.add_run(' It is too hot!!')  #加入文字在第二段文字後面
+doc_file＿write.save('Good morning.docx')
+
+
+#新增標題
+doc_file＿addtitle = docx.Document() #返回一個新的空白的word
+doc_file＿addtitle.add_heading('Header 0', 0)  #為標題0字串主標題
+doc_file＿addtitle.add_heading('Header 1', 1)  #為標題1字串主標題
+doc_file＿addtitle.add_heading('Header 2', 2)  #為標題2字串主標題
+doc_file＿addtitle.add_heading('Header 3', 3)  #為標題3字串主標題
+doc_file＿addtitle.add_heading('Header 4', 4)  #為標題4字串主標題
+doc_file＿addtitle.save('addtitle.docx')
+
+#新增換行符號與分頁符號
+doc_file＿addsymbol = docx.Document() #返回一個新的空白的word
+doc_file＿addsymbol.add_paragraph('First page!!') #加入文字在第一頁
+doc_file＿addsymbol.paragraphs[0].runs[0].add_break(docx.enum.text.WD_BREAK.PAGE) #在第一個run後面插入換頁符號
+doc_file＿addsymbol.add_paragraph('Second page!!') #加入文字在第二頁
+doc_file＿addsymbol.save('addsymbol.docx')
