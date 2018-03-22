@@ -1,0 +1,26 @@
+#讀取檔案
+import csv
+csv_file_1 = open('data_for_updating.csv') #開啟csv檔案
+csv_reader_1 = csv.reader(csv_file_1) #讀取csv檔案內容
+csv_reader_data_1 = list(csv_reader_1)  #放入串列
+print(csv_reader_data_1) 
+
+print(csv_reader_data_1[0][0]) #顯示特定值
+print(csv_reader_data_1[1][0]) 
+print(csv_reader_data_1[2][2])
+
+
+#以for迴圈讀取檔案
+import csv
+csv_file_2 = open('data_for_updating.csv') #開啟csv檔案
+csv_reader_2 = csv.reader(csv_file_2) #讀取csv檔案內容
+
+for row in csv_reader_2:
+    print('Row #' + str(csv_reader_2.line_num) + ' ' + str(row)) #用line_num讀取列編號
+    
+#寫入檔案
+import csv
+csv_file_3 = open('data_writer.csv', 'w', newline='') #以寫入模式開啟csv檔案
+csv_writer = csv.writer(csv_file_3)  #以writer建立物件
+csv_writer.writerow(['spam', '7.21', '04/06/2011', 'Tom wang']) #寫入資料
+csv_file_3.close()
