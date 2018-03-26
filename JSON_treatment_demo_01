@@ -1,0 +1,16 @@
+#JSON
+"""
+JSON只能存放字串、整數、浮點數、布林、串列、字典與NoneType。
+"""
+
+#用loads()讀取JSON
+data_for_JSON = '{"nation": "Japan", "area": 37.8, "GDP" : 38893, "English" : true}' #JSON檔案要
+import json
+json_transfer_python = json.loads(data_for_JSON) #讀取JSON並返回字典
+print(json_transfer_python)
+
+#用dumps寫入JSON
+data_for_python = {"nation": "Japan", "area": 37.8, "GDP" : 38893, "English" : True} 
+import json
+python_transfer_json = json.dumps(data_for_python)  #將python寫入JSON格式
+print(python_transfer_json)
