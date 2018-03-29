@@ -1,0 +1,41 @@
+import datetime #日期模組
+date = datetime.datetime.now()  #返回目前年-月-日 時間
+print(date.year, date.month, date.day, date.hour, date.minute, date.second)
+
+print(datetime.datetime.fromtimestamp(1000000)) #從紀元時間1970-01-01開始後的100萬秒
+print(datetime.datetime.fromtimestamp(time.time()))  #回傳目前時間 
+
+#比較時間早晚
+day_2016 = datetime.datetime(2016, 5, 5, 0, 0, 0)
+day_2015 = datetime.datetime(2015, 5, 5, 0, 0, 0)
+day_2016_another = datetime.datetime(2016, 5, 5, 0, 0, 0)
+
+print(day_2016 == day_2015)
+print(day_2016 > day_2015)
+print(day_2016 != day_2016_another)
+
+#時間計算
+
+time_calculation = datetime.timedelta(days = 10, hours = 5, minutes = 15, seconds = 5) #傳入特定時間
+print(time_calculation.days, time_calculation.seconds, time_calculation.microseconds) #回傳日期,秒數,毫秒數
+print(time_calculation.total_seconds()) #計算全部時間是多少秒
+print(str(time_calculation)) #返回正規時間表示
+three_thousand_days = datetime.timedelta(days = 3000) #建立3000天
+print(day_2016 + three_thousand_days)
+print(day_2016 - three_thousand_days)
+print(day_2016 - (2 * three_thousand_days))
+
+"""
+#暫停到某個日期
+while datetime.datetime.now < day_2016: #當時間走到day_2016時，程式停止
+    time.sleep(1)
+"""
+
+#使用strftime將datetime轉成字串
+print(day_2016.strftime('%Y/%m/%d %H:%M:%S'))
+print(day_2016.strftime('%I:%M %p'))
+print(day_2016.strftime("%B of %y"))
+
+#使用strptime將datetime轉成字串
+timeTstr = datetime.datetime.strptime('October 13, 2017', '%B %d, %Y') #第二引數為自訂變數
+print(timeTstr)
