@@ -1,0 +1,19 @@
+#避免並行問題，絕不可讓多執行緒讀寫相同的變數
+
+import threading, time
+print('Start of program')
+
+def sleep():
+  time.sleep(5)
+  print('Wake up!')
+
+threadobject = threading.Thread(target = sleep) #呼叫threading.Thread（）函式以單獨方法來作執行緒。
+threadobject.start()  #開始執行threadobject(產生第二個執行緒)
+
+print('End of program')
+
+#傳入引數到執行緒的目標函數內
+import threading
+
+threadobject_another = threading.Thread(target = print, args = ['A', 'B', 'C'], kwargs = {'sep':'&'})
+threadobject_another.start()
