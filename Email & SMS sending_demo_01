@@ -1,0 +1,21 @@
+"""
+SMTP:負責傳送mail
+IMAP:負責回收mail
+"""
+
+import smtplib
+smtp_objective = smtplib.SMTP('smtp.gmail.com', 587) #傳入網域名成與連接埠為587
+smtp_objective = smtplib.SMTP_SSL('smtp.gmail.com', 465) #傳入網域名成與連接埠為465,不需要啟動TLS加密
+
+print(type(smtp_objective))
+smtp_objective.ehlo()
+print(smtp_objective.ehlo())  #取得SMTP後呼叫ehlo()，顯示250代表成功連接
+smtp_objective.starttls()    #使SMTP連接處在TLS模式(587才要)
+print(smtp_objective.starttls())
+
+smtp_objective.login('my_email', 'my_password')  #第一個引數為郵件地址;第二個引數為密碼,成功會回傳235
+
+smtp_objective.sendmail('my_email', 'send_mail', 'Subject: So good. \n Dear Sunny, I learned how to send mail by Python.  Ryan')
+#第一個引數：自己mail地址;  第二個引數：別人mail地址; 第三個引數：內文
+
+smtp_objective.quit()  #切斷SMTP伺服器連線
