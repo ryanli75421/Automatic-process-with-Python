@@ -1,0 +1,43 @@
+import imapclient
+#連接IMAP
+imap_objective = imapclient.IMAPClient('imap.gamil.com', ssl=True) #利用連接IMAP伺服器收取Email
+#登入IMAP
+imap_objective.login('my_email', 'my_password')  #第一個引數為郵件地址;第二個引數為密碼,成功會回傳235
+
+#選取資料夾
+import pprint
+pprint.pprint(imap_objective.list_folders())
+
+imap_objective.select_folder('INBOX', readonly = True) #加上readonly可以防止不小心修改mail的動作
+
+#執行尋找
+ID_data = imap_objective.search(['SINCE 15-Jul-2016']) #搜尋07/15以後收到的mail
+print(ID_data)
+
+#修改記憶體限制大小
+import imaplib
+imaplib._MAXLINE = 10000000  #增加記憶體量
+
+messages_context = imap_objective.fetch(ID_data, ['BODY[]']) #取得ID_data的串列，可以呼叫fetch()取得email內容
+import pprint
+pprint.pprint(messages_context) #印出返回值
+
+#從原始訊息中取得email地址(可以整理mail的內容格式)
+import pyzmail
+message = pyzmail.PyzMessage.factory(messages_context[40041]['BODY[]']) #取得Mail的內文
+
+message.get_subject()   #返回主旨
+message.get_addresses('from') #寄件人地址
+message.get_addresses('to')  #受件人地址
+message.get_addresses('cc')  #備份人地址
+
+message.text_part != None  #內文若為純文字，返回True
+message.text_part.get_payload().decode(message.text_part.charset)  #取得內文
+message.html_part != None  #內文若為HTML格式，返回True
+message.thtml_part.get_payload().decode(message.html_part.charset) #取得內文
+
+#刪除mail
+imap_objective.delete_messages(ID_data)  #傳入郵件訊息標示delete旗標
+imap_objective.expunge()  #可以永久刪除
+
+imap_objective.logout()  #切斷IMAP伺服器連接
