@@ -1,0 +1,22 @@
+from PIL import ImageColor
+print(ImageColor.getcolor('red', 'RGBA'))  #顯示顏色的RGBA
+print(ImageColor.getcolor('black', 'RGBA'))
+print(ImageColor.getcolor('green', 'RGBA'))
+print(ImageColor.getcolor('blue', 'RGBA'))
+
+from PIL import Image
+pic_1 = Image.open('6.png')
+"""
+import os
+os.chdir('c:\\6.png') #改以完整的絕對路徑
+"""
+
+print(pic_1.size)
+(width, height) = pic_1.size #查看大小尺寸
+print(pic_1.filename) #檔案名稱
+print(pic_1.format)  #檔案格式
+pic_1.save('6.jpg')
+
+from PIL import Image
+im = Image.new('RGBA', (500, 400), 'blue') #建立一個大小500x400背景是藍色的圖檔
+im.save('blueImage.png')
