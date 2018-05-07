@@ -1,0 +1,14 @@
+cropped_image = pic_1.crop((335, 345, 565, 560))  #返回一新物件而進行切割圖片，不是在原圖切割
+cropped_image.save('cropped_image.png')
+
+copy_pic_1 = pic_1.copy() #複製圖片
+copy_pic_1.paste(cropped_image, (20,20)) #將cropped_image貼在copy_pic_1上
+copy_pic_1.save('pasted_image.png')
+
+width, height = pic_1.size
+variation_size_pic_1 = pic_1.resize((int(width/2), int(height/2))) #將指定圖片縮小一半
+variation_size_pic_1.save('variation_size_pic_1.png')
+
+copy_pic_1.rotate(90).save('rotated_90.png')    #旋轉90
+copy_pic_1.rotate(180).save('rotated_180.png')  #旋轉180
+copy_pic_1.rotate(270).save('rotated_270.png')  #旋轉270
