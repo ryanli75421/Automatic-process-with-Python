@@ -1,0 +1,55 @@
+from PIL import Image
+im = Image.new('RGBA', (500, 400), 'blue') #建立一個大小500x400背景是藍色的圖檔
+im.save('blueImage.png')
+
+cropped_image = pic_1.crop((335, 345, 565, 560))  #返回一新物件而進行切割圖片，不是在原圖切割
+cropped_image.save('cropped_image.png')
+
+copy_pic_1 = pic_1.copy() #複製圖片
+copy_pic_1.paste(cropped_image, (20,20)) #將cropped_image貼在copy_pic_1上
+copy_pic_1.save('pasted_image.png')
+
+width, height = pic_1.size
+variation_size_pic_1 = pic_1.resize((int(width/2), int(height/2))) #將指定圖片縮小一半
+variation_size_pic_1.save('variation_size_pic_1.png')
+
+copy_pic_1.rotate(90).save('rotated_90.png')    #旋轉90
+copy_pic_1.rotate(180).save('rotated_180.png')  #旋轉180
+copy_pic_1.rotate(270).save('rotated_270.png')  #旋轉270
+copy_pic_1.transpose(Image.FLIP_LEFT_RIGHT).save('horizontal.png')  #左右對調
+copy_pic_1.transpose(Image.FLIP_TOP_BOTTOM).save('vertical.png')  #上下對調
+
+
+#修改與取得像素
+image_pic = Image.new('RGBA', (100, 100)) #產生100x100的透明正方形圖片
+image_pic.getpixel((0,0))  #確認(0,0)這點的RGBA
+#上半部
+for x in range(100):
+    for y in range(50):
+        image_pic.putpixel((x, y), (100,100,100))
+#下半部
+from PIL import ImageColor
+for x in range(100):
+    for y in range(50,100):
+        image_pic.putpixel((x,y), ImageColor.getcolor('darkgreen', 'RGBA')) 
+        #利用ImageColor.getcolor取得顏色值
+image_pic.save('pixel_practice.png')
+
+#影像圖片中繪圖
+from PIL import Image, ImageDraw
+image_pic = Image.new('RGBA', (400, 400), 'white')  #產生一個影像圖片
+draw_pic = ImageDraw.Draw(image_pic)  #用來建立可繪製在圖片上的方法
+
+draw_pic.line([(0,0), (99,0), (99,99), (0,99), (0,0)], fill = 'blue') #畫線
+draw_pic.rectangle((40,50,60,60), fill = 'black')  #畫矩形
+draw_pic.ellipse((100,30,140,60), fill = 'green')  #畫橢圓
+image_pic.save('drawing.png')
+
+#繪製文字
+from PIL import ImageFont
+import os
+draw_pic.text((30,140), 'Guten Tag!!', fill = 'red') #輸入文字
+fontsFolder = 'FONT_FOLDER' #存資料夾路徑到fontsFolder中
+font_para = ImageFont.truetype(os.path.join(fontsFolder, 'arial.ttf'), 32) #傳入需要的字形
+draw_pic.text((100,140), 'Guten Tag!!', fill = 'red', font = font_para) #輸入文字
+image_pic.save('texting.png')
