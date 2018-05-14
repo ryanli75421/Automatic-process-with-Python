@@ -1,0 +1,29 @@
+"""
+(1) sudo pip3 install pyobjc-framework-Quartz
+(2) sudo pip3 install pyobjc-core
+(3) sudo pip3 install pyobjc
+(4) pip3 install pyautogui
+
+直接打conda install -c conda-forge pyautogui就可以了
+"""
+
+import pyautogui
+pyautogui.PAUSE = 1  #pyautogui類指令會停1秒再開始
+pyautogui.FAILSAFE = True  #失效安全防護功能開啟(可以將滑鼠移動到螢幕左上角觸發功能)
+print(pyautogui.size())
+width, height = pyautogui.size() #回傳螢幕尺寸值
+
+#移動滑鼠游標
+for i in range(10): #移動滑鼠十圈
+    pyautogui.moveTo(100, 100, duration = 0.25) #滑鼠所在絕對位置，停留0.25秒
+    pyautogui.moveTo(300, 100, duration = 0.25)
+    pyautogui.moveTo(300, 300, duration = 0.25)
+    pyautogui.moveTo(100, 300, duration = 0.25)
+
+for i in range(10): #移動滑鼠十圈
+    pyautogui.moveRel(100, 0, duration = 0.25) #滑鼠所在絕對位置，停留0.25秒
+    pyautogui.moveRel(0, 200, duration = 0.25)
+    pyautogui.moveRel(-200, 0, duration = 0.25)
+    pyautogui.moveRel(0, -100, duration = 0.25)
+
+print(pyautogui.position())
