@@ -1,0 +1,18 @@
+import pyautogui
+pyautogui.click(100,100, button = 'left')  #指定滑鼠在(100,100)處按下滑鼠左鍵
+
+#拖曳滑鼠游標(正方形螺旋)
+import pyautogui, time
+time.sleep(5) # 延遲5秒
+pyautogui.click() #確認是否有取得滑鼠
+distance = 300
+while distance > 0:
+    pyautogui.dragRel(distance, 0, duration = 0.2) #向右相對移動
+    distance = distance - 5
+    pyautogui.dragRel(0, distance, duration = 0.2) #向下相對移動
+    pyautogui.dragRel(-distance, 0, duration = 0.2) #向左相對移動
+    distance = distance - 5
+    pyautogui.dragRel(0, -distance, duration = 0.2) #向上相對移動
+
+time.sleep(5)
+pyautogui.scroll(100) #向上捲動100個單位
