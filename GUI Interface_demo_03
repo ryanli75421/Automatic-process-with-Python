@@ -1,0 +1,12 @@
+#取得螢幕截圖
+import pyautogui
+get_screen = pyautogui.screenshot()  #存放一個螢幕截圖的物件
+get_screen.getpixel((0,0))  #返回影像座標位子的(R,G,B)
+
+pyautogui.pixelMatchesColor(0, 0, (123, 150, 56))  #確認(0,0)是否為(123, 150, 56)
+
+#影像圖片識別
+import pyautogui
+pyautogui.locateOnScreen('6.png') #回傳四個整數表示該圖片座標(左上角x,左上角y,圖片寬度,圖片高度)
+pyautogui.center((111,222,30,20)) #指定其圖片之中心
+pyautogui.click((126,232))  #滑鼠點擊中心
